@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Filter, TrendingUp, Target, BarChart3, X, Calendar, Award, Zap } from 'lucide-react';
+import { ExternalLink, Filter, TrendingUp, Target, BarChart3, X, Calendar, Award, Zap, Github } from 'lucide-react';
 
 const Projects = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -17,6 +17,7 @@ const Projects = () => {
       impact: 'Scaled article production by over 100x',
       metrics: ['10,000+ Articles/Day', '94% Classification Accuracy', 'Auto Review System'],
       demo: '#',
+      github: 'https://github.com',
       details: [
         'Used the OpenAI API to generate article titles and body content based on selected topics',
         'Implemented a custom logistic regression model with Scikit-learn to classify the generated titles for click-bait potential',
@@ -50,6 +51,7 @@ const Projects = () => {
       impact: 'Reduced daily reporting time by 100%',
       metrics: ['20+ PDF Reports Daily', '<1 Min Processing Time', '99.8% Extraction Accuracy'],
       demo: '#',
+      github: 'https://github.com',
       details: [
         'Automated the daily retrieval of hotel audit PDFs from email attachments using a scheduled flow',
         'The script identifies and isolates pages containing "Final Transaction Closeout" and "Hotel Statistics," converting them into images for analysis',
@@ -83,6 +85,7 @@ const Projects = () => {
       impact: 'Streamlined hotel data analysis workflow by 85%',
       metrics: ['85% Workflow Improvement', '10MB+ File Processing', '100% Mobile Responsive'],
       demo: '#',
+      github: 'https://github.com',
       details: [
         'Built a modern React-based web application with Material-UI components for professional hotel data analysis',
         'Implemented automatic CSV file detection and loading system that processes hotel datasets on startup',
@@ -116,6 +119,7 @@ const Projects = () => {
       impact: 'Created 25+ custom workflows for different use cases and artistic styles',
       metrics: ['1000+ Images Generated', '10+ AI Models Integrated', '25+ Custom Workflows'],
       demo: '#',
+      github: 'https://github.com',
       details: [
         'Integrated cutting-edge models including Flux.1-dev, SDXL, and specialized ControlNet variants for precise image control',
         'Developed custom ComfyUI workflows with advanced sampling techniques, multi-pass refinement, and intelligent upscaling',
@@ -149,6 +153,7 @@ const Projects = () => {
       impact: 'Successfully ran 70B parameter model locally with good performance',
       metrics: ['70B Parameters', '20-30s Response Time', 'Local Privacy'],
       demo: '#',
+      github: 'https://github.com',
       details: [
         'Downloaded and configured DeepSeek-R1 model for local inference using Ollama and direct PyTorch implementations',
         'Experimented with different quantization levels (4-bit, 8-bit) to fit the model within available GPU memory',
@@ -327,15 +332,30 @@ const Projects = () => {
                   )}
                 </div>
 
-                {/* Click to View Indicator */}
+                {/* Action Buttons */}
                 <div className="flex items-center justify-between">
-                  <span className="text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    Click to view full details
-                  </span>
-                  <ExternalLink 
-                    size={16} 
-                    className="text-gray-400 opacity-0 group-hover:opacity-100 group-hover:text-accent transition-all duration-300 transform group-hover:translate-x-1" 
-                  />
+                  <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <motion.a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      className="p-2 bg-gray-800 dark:bg-gray-600 text-white rounded-lg hover:bg-gray-900 dark:hover:bg-gray-500 transition-colors"
+                    >
+                      <Github size={14} />
+                    </motion.a>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      View details
+                    </span>
+                    <ExternalLink 
+                      size={16} 
+                      className="text-gray-400 opacity-0 group-hover:opacity-100 group-hover:text-accent transition-all duration-300 transform group-hover:translate-x-1" 
+                    />
+                  </div>
                 </div>
               </div>
 
@@ -402,7 +422,35 @@ const Projects = () => {
                         <span className="text-accent font-medium text-sm sm:text-base">{selectedProject.category}</span>
                       </div>
                     </div>
-                    <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300">{selectedProject.description}</p>
+                    <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-4">{selectedProject.description}</p>
+                    
+                    {/* Action Buttons */}
+                    <div className="flex items-center gap-3">
+                      <motion.a
+                        href={selectedProject.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="flex items-center gap-2 bg-gray-800 dark:bg-gray-600 text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-gray-900 dark:hover:bg-gray-500 transition-colors text-sm sm:text-base font-medium"
+                      >
+                        <Github size={16} sm={18} />
+                        View Code
+                      </motion.a>
+                      {selectedProject.demo !== '#' && (
+                        <motion.a
+                          href={selectedProject.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          className="flex items-center gap-2 bg-accent text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm sm:text-base font-medium"
+                        >
+                          <ExternalLink size={16} sm={18} />
+                          Live Demo
+                        </motion.a>
+                      )}
+                    </div>
                   </div>
                   <button
                     onClick={() => setSelectedProject(null)}
