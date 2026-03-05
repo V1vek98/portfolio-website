@@ -1,29 +1,34 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ThemeProvider } from './contexts/ThemeContext';
-import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import Projects from './pages/Projects';
-import Experience from './pages/Experience';
+import Navbar from './components/layout/Navbar';
+import Footer from './components/layout/Footer';
+import PageTransition from './components/layout/PageTransition';
+import HomePage from './pages/HomePage';
 
-import Contact from './pages/Contact';
+const DashboardShowcase = lazy(() => import('./pages/DashboardShowcase'));
+
+const LoadingFallback = () => (
+  <div className="min-h-screen flex items-center justify-center">
+    <div className="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin" />
+  </div>
+);
 
 function App() {
   return (
-    <ThemeProvider>
-      <Router>
-        <div className="min-h-screen bg-background-light dark:bg-background-dark transition-colors duration-300">
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/experience" element={<Experience />} />
-
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </div>
-      </Router>
-    </ThemeProvider>
+    <Router>
+      <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
+        <Navbar />
+        <Suspense fallback={<LoadingFallback />}>
+          <PageTransition>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/dashboards" element={<DashboardShowcase />} />
+            </Routes>
+          </PageTransition>
+        </Suspense>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

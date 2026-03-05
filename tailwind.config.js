@@ -3,99 +3,115 @@ module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
-  darkMode: 'class',
   theme: {
-    // Custom breakpoints optimized for mobile devices
     screens: {
-      'xs': '375px',      // Small phones
-      'sm': '640px',      // Larger phones
-      'md': '768px',      // Tablets
-      'lg': '1024px',     // Small laptops
-      'xl': '1280px',     // Desktop
-      '2xl': '1536px',    // Large screens
+      'xs': '375px',
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px',
+      '2xl': '1536px',
     },
     extend: {
       colors: {
-        primary: {
-          light: '#FFFFFF',
-          dark: '#1F2937'
+        surface: {
+          primary: 'var(--bg-primary)',
+          secondary: 'var(--bg-secondary)',
+          tertiary: 'var(--bg-tertiary)',
         },
-        background: {
-          light: '#F3F4F6',
-          dark: '#111827'
+        content: {
+          primary: 'var(--text-primary)',
+          secondary: 'var(--text-secondary)',
+          tertiary: 'var(--text-tertiary)',
         },
-        text: {
-          light: '#111827',
-          dark: '#F9FAFB'
+        accent: {
+          DEFAULT: '#4285F4',
+          blue: '#4285F4',
+          red: '#EA4335',
+          yellow: '#FBBC05',
+          green: '#34A853',
         },
-        accent: '#3B82F6',
-        card: {
-          light: '#FFFFFF',
-          dark: '#374151'
+        google: {
+          blue: '#4285F4',
+          red: '#EA4335',
+          yellow: '#FBBC05',
+          green: '#34A853',
         },
-        border: {
-          light: '#E5E7EB',
-          dark: '#4B5563'
-        }
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ['Roboto', 'system-ui', 'sans-serif'],
       },
-      // Mobile-friendly spacing
+      fontSize: {
+        'display': 'clamp(3.5rem, 8vw, 6rem)',
+        'h1': 'clamp(2.5rem, 5vw, 4rem)',
+        'h2': 'clamp(1.5rem, 3vw, 2rem)',
+        'body': '1.125rem',
+      },
+      backgroundImage: {
+        'gradient-accent': 'linear-gradient(135deg, #4285F4 0%, #34A853 100%)',
+        'gradient-accent-reverse': 'linear-gradient(135deg, #34A853 0%, #4285F4 100%)',
+        'gradient-mesh': 'radial-gradient(at 20% 80%, rgba(66,133,244,0.1) 0%, transparent 50%), radial-gradient(at 80% 20%, rgba(52,168,83,0.1) 0%, transparent 50%)',
+      },
+      backdropBlur: {
+        'glass': '20px',
+      },
+      animation: {
+        'float': 'float 6s ease-in-out infinite',
+        'pulse-slow': 'pulse 3s ease-in-out infinite',
+        'bounce-slow': 'bounce 2s ease-in-out infinite',
+        'gradient-shift': 'gradient-shift 8s ease infinite',
+        'glow': 'glow 2s ease-in-out infinite alternate',
+      },
+      keyframes: {
+        float: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-20px)' },
+        },
+        'gradient-shift': {
+          '0%, 100%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+        },
+        glow: {
+          '0%': { boxShadow: '0 0 20px rgba(66,133,244,0.2)' },
+          '100%': { boxShadow: '0 0 40px rgba(52,168,83,0.3)' },
+        },
+      },
       spacing: {
         'safe-top': 'env(safe-area-inset-top)',
         'safe-bottom': 'env(safe-area-inset-bottom)',
-        'safe-left': 'env(safe-area-inset-left)',
-        'safe-right': 'env(safe-area-inset-right)',
-      },
-      // Responsive font sizes
-      fontSize: {
-        'xs': ['0.75rem', { lineHeight: '1rem' }],
-        'sm': ['0.875rem', { lineHeight: '1.25rem' }],
-        'base': ['1rem', { lineHeight: '1.5rem' }],
-        'lg': ['1.125rem', { lineHeight: '1.75rem' }],
-        'xl': ['1.25rem', { lineHeight: '1.75rem' }],
-        '2xl': ['1.5rem', { lineHeight: '2rem' }],
-        '3xl': ['1.875rem', { lineHeight: '2.25rem' }],
-        '4xl': ['2.25rem', { lineHeight: '2.5rem' }],
-        '5xl': ['3rem', { lineHeight: '1' }],
-        '6xl': ['3.75rem', { lineHeight: '1' }],
-        // Fluid typography for better mobile scaling
-        'fluid-xs': 'clamp(0.75rem, 2vw, 0.875rem)',
-        'fluid-sm': 'clamp(0.875rem, 2.5vw, 1rem)',
-        'fluid-base': 'clamp(1rem, 3vw, 1.125rem)',
-        'fluid-lg': 'clamp(1.125rem, 3.5vw, 1.25rem)',
-        'fluid-xl': 'clamp(1.25rem, 4vw, 1.5rem)',
-        'fluid-2xl': 'clamp(1.5rem, 5vw, 2rem)',
-        'fluid-3xl': 'clamp(1.875rem, 6vw, 3rem)',
-        'fluid-4xl': 'clamp(2.25rem, 7vw, 4rem)',
-      },
-      // Touch-friendly minimum sizes
-      minHeight: {
-        'touch': '44px',
-      },
-      minWidth: {
-        'touch': '44px',
       },
     },
   },
   plugins: [
-    // Custom plugin for mobile utilities
     function({ addUtilities }) {
       addUtilities({
         '.scrollbar-hide': {
-          /* Hide scrollbar for Chrome, Safari and Opera */
-          '&::-webkit-scrollbar': {
-            display: 'none',
-          },
-          /* Hide scrollbar for IE, Edge and Firefox */
+          '&::-webkit-scrollbar': { display: 'none' },
           '-ms-overflow-style': 'none',
           'scrollbar-width': 'none',
         },
-        '.tap-highlight-transparent': {
-          '-webkit-tap-highlight-color': 'transparent',
+        '.glass': {
+          'background': 'rgba(255,255,255,0.7)',
+          'backdrop-filter': 'blur(20px)',
+          '-webkit-backdrop-filter': 'blur(20px)',
+          'border': '1px solid rgba(0,0,0,0.08)',
+        },
+        '.glass-strong': {
+          'background': 'rgba(255,255,255,0.85)',
+          'backdrop-filter': 'blur(40px)',
+          '-webkit-backdrop-filter': 'blur(40px)',
+          'border': '1px solid rgba(0,0,0,0.1)',
+        },
+        '.text-gradient': {
+          'background': 'linear-gradient(135deg, #4285F4 0%, #EA4335 33%, #FBBC05 66%, #34A853 100%)',
+          '-webkit-background-clip': 'text',
+          '-webkit-text-fill-color': 'transparent',
+          'background-clip': 'text',
+        },
+        '.border-gradient': {
+          'border-image': 'linear-gradient(135deg, #4285F4, #34A853) 1',
         },
       })
     },
   ],
-} 
+}
