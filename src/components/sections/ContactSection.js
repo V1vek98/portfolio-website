@@ -4,6 +4,7 @@ import { Mail, Phone, MapPin, Linkedin, Github } from 'lucide-react';
 import Section from '../layout/Section';
 import Container from '../layout/Container';
 import GradientText from '../ui/GradientText';
+import BackgroundDecoration from '../ui/BackgroundDecoration';
 import { personalInfo } from '../../config/data';
 import { ease } from '../../utils/animations';
 
@@ -17,7 +18,8 @@ const ContactSection = () => {
   ];
 
   return (
-    <Section id="contact">
+    <Section id="contact" variant="subtle">
+      <BackgroundDecoration variant="green-accent" />
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 30 }}

@@ -7,6 +7,7 @@ import Container from '../layout/Container';
 import GlassCard from '../ui/GlassCard';
 import GradientText from '../ui/GradientText';
 import Modal from '../ui/Modal';
+import BackgroundDecoration from '../ui/BackgroundDecoration';
 import { projects, projectCategories } from '../../config/data';
 import { ease } from '../../utils/animations';
 
@@ -21,6 +22,7 @@ const ProjectsSection = () => {
 
   return (
     <Section id="projects">
+      <BackgroundDecoration variant="blue-green" />
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 30 }}

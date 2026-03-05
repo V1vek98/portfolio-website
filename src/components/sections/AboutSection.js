@@ -4,12 +4,16 @@ import Section from '../layout/Section';
 import Container from '../layout/Container';
 import GradientText from '../ui/GradientText';
 import AnimatedCounter from '../ui/AnimatedCounter';
+import BackgroundDecoration from '../ui/BackgroundDecoration';
+import FloatingShapes from '../ui/FloatingShapes';
 import { personalInfo, stats } from '../../config/data';
 import { staggerItem, ease } from '../../utils/animations';
 
 const AboutSection = () => {
   return (
-    <Section id="about">
+    <Section id="about" variant="subtle">
+      <BackgroundDecoration variant="blue-green" />
+      <FloatingShapes />
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Profile Image */}

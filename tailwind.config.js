@@ -61,6 +61,7 @@ module.exports = {
         'bounce-slow': 'bounce 2s ease-in-out infinite',
         'gradient-shift': 'gradient-shift 8s ease infinite',
         'glow': 'glow 2s ease-in-out infinite alternate',
+        'spin-slow': 'spin 30s linear infinite',
       },
       keyframes: {
         float: {

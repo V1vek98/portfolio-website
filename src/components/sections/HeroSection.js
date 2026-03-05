@@ -16,6 +16,68 @@ const HeroSection = () => {
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Animated gradient mesh */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <motion.div
+          className="absolute rounded-full"
+          style={{
+            width: 600,
+            height: 600,
+            left: '10%',
+            top: '20%',
+            background: 'radial-gradient(circle, rgba(66,133,244,0.08) 0%, transparent 70%)',
+            filter: 'blur(60px)',
+          }}
+          animate={{ x: [0, 50, -30, 0], y: [0, -40, 20, 0] }}
+          transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
+        />
+        <motion.div
+          className="absolute rounded-full"
+          style={{
+            width: 500,
+            height: 500,
+            right: '5%',
+            top: '10%',
+            background: 'radial-gradient(circle, rgba(52,168,83,0.07) 0%, transparent 70%)',
+            filter: 'blur(60px)',
+          }}
+          animate={{ x: [0, -40, 30, 0], y: [0, 30, -20, 0] }}
+          transition={{ duration: 25, repeat: Infinity, ease: 'easeInOut' }}
+        />
+        <motion.div
+          className="absolute rounded-full"
+          style={{
+            width: 450,
+            height: 450,
+            left: '50%',
+            bottom: '10%',
+            background: 'radial-gradient(circle, rgba(251,188,5,0.06) 0%, transparent 70%)',
+            filter: 'blur(60px)',
+          }}
+          animate={{ x: [0, 35, -25, 0], y: [0, -30, 15, 0] }}
+          transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+        />
+      </div>
+
+      {/* Dot grid pattern */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        aria-hidden="true"
+        style={{
+          backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.03) 1px, transparent 1px)',
+          backgroundSize: '24px 24px',
+        }}
+      />
+
+      {/* Vignette */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        aria-hidden="true"
+        style={{
+          background: 'radial-gradient(ellipse at center, transparent 50%, var(--bg-secondary) 100%)',
+        }}
+      />
+
       {/* Particle Background */}
       <div className="absolute inset-0">
         <ParticleField count={50} />

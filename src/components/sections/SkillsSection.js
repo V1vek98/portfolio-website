@@ -4,12 +4,16 @@ import Section from '../layout/Section';
 import Container from '../layout/Container';
 import GlassCard from '../ui/GlassCard';
 import GradientText from '../ui/GradientText';
+import BackgroundDecoration from '../ui/BackgroundDecoration';
+import FloatingShapes from '../ui/FloatingShapes';
 import { skillCategories } from '../../config/data';
 import { ease } from '../../utils/animations';
 
 const SkillsSection = () => {
   return (
-    <Section id="skills">
+    <Section id="skills" variant="subtle">
+      <BackgroundDecoration variant="red-yellow" />
+      <FloatingShapes />
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
