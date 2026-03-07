@@ -16,9 +16,13 @@
     "react-router-dom": "^7.6.3",
     "react-scripts": "5.0.1",
     "react-simple-maps": "^3.0.0",
-    "react-tooltip": "^5.29.1",
     "recharts": "^3.0.2",
     "web-vitals": "^2.1.4"
+  },
+  "overrides": {
+    "react-simple-maps": {
+      "react": "$react"
+    }
   },
   "scripts": {
     "start": "react-scripts start",
